@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | Government Comprehensive High School for Boys</title>
+<link href="https://fonts.googleapis.com/css2?family=Jameel+Noori+Nastaleeq&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#ff7f50;
+  --secondary:#081a33;
+  --glass:rgba(255,255,255,0.25);
+  --overlay:rgba(0,0,0,0.4);
+  --accent1:#ff6f61;
+  --accent2:#ffcc33;
+  --accent3:#00e5ff;
+}
+
+/* ===== GLOBAL ===== */
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Jameel Noori Nastaleeq', serif;}
+body,html{height:100%;scroll-behavior:smooth;}
+body{
+  background:url('1.png') no-repeat center center/cover;
+  position:relative;
+  overflow-x:hidden;
+}
+body::after{
+  content:"";
+  position:absolute;top:0;left:0;width:100%;height:100%;
+  backdrop-filter:blur(10px);
+  background:var(--overlay);
+  z-index:0;
+  pointer-events:none;
+}
+
+/* ===== HEADER ===== */
+header{
+  position:fixed;top:0;width:100%;background:var(--secondary);color:#fff;
+  display:flex;justify-content:space-between;align-items:center;padding:15px 30px;
+  z-index:999;box-shadow:0 4px 15px rgba(0,0,0,0.3);
+  transition:0.4s;
+}
+header.scrolled{background:rgba(8,26,51,0.95);}
+header h2{font-size:1.4rem;font-weight:bold;}
+header nav a{
+  color:#fff;text-decoration:none;margin-left:20px;font-weight:500;transition:0.3s;
+}
+header nav a:hover{color:var(--primary);transform:scale(1.1);}
+
+/* ===== MAIN CONTENT ===== */
+.main{
+  max-width:800px;margin:160px auto 40px auto;padding:30px;
+  background:var(--glass);backdrop-filter:blur(15px);
+  border-radius:20px;box-shadow:0 15px 35px rgba(0,0,0,0.25);
+  display:flex;flex-direction:column;gap:25px;z-index:1;position:relative;
+}
+
+/* ===== CONTACT INFO ===== */
+.contact-info{
+  display:flex;flex-direction:column;gap:15px;
+}
+.contact-info a{
+  font-weight:bold;color:var(--primary);text-decoration:none;
+}
+.contact-info a:hover{color:var(--accent3);}
+
+/* ===== FORM ===== */
+form{display:flex;flex-direction:column;gap:12px;}
+label{font-weight:bold;color:#081a33;}
+input, textarea{
+  padding:12px;border-radius:12px;border:none;outline:none;
+  width:100%;
+}
+textarea{resize:none;}
+button#submitBtn{
+  background:linear-gradient(90deg,var(--accent1),var(--accent3));
+  color:#000;font-weight:700;padding:12px 25px;border-radius:30px;
+  border:none;cursor:pointer;transition:0.3s;
+}
+button#submitBtn:hover{transform:scale(1.05);box-shadow:0 5px 15px rgba(0,0,0,0.4);}
+
+/* ===== FOOTER ===== */
+footer{
+  background:var(--secondary);color:#fff;text-align:center;
+  padding:40px 20px;margin-top:40px;border-radius:15px 15px 0 0;
+}
+
+/* ===== LOADER ===== */
+#submitLoader{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  background:rgba(0,0,0,0.7);
+  display:flex;justify-content:center;align-items:center;flex-direction:column;z-index:10000;
+}
+#submitLoader .loader-circle{
+  border:8px solid #f3f3f3;
+  border-top:8px solid #081a33;
+  border-radius:50%;width:80px;height:80px;
+  animation:spin 1.5s linear infinite;margin-bottom:20px;
+}
+@keyframes spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+</style>
+</head>
+<body>
+
+<header id="header">
+  <h2>Govt Comprehensive High School</h2>
+  <nav>
+    <a href="index.html#landing">Home</a>
+    <a href="index.html#multiStepForm">Admission</a>
+    <a href="contact.html">Contact</a>
+    <a href="#support">Support</a>
+  </nav>
+</header>
+
+<div class="main">
+  <h2>Contact Us | ہم سے رابطہ کریں</h2>
+  
+  <div class="contact-info">
+    <p>📞 Phone: <a href="tel:+923001234567">+92 300 1234567</a></p>
+    <p>✉️ Email: <a href="mailto:info@school.com">info@school.com</a></p>
+    <p>💬 WhatsApp: <a href="https://wa.me/923001234567" target="_blank">Chat on WhatsApp</a></p>
+  </div>
+
+  <h3>Send us your message | اپنا مسئلہ لکھیں</h3>
+  <form id="contactForm" action="https://formsubmit.co/YOUR_EMAIL_HERE" method="POST" onsubmit="submitForm(event)">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_next" value="thank-you.html">
+
+    <label>Name | نام:</label>
+    <input type="text" name="Name" required>
+
+    <label>Email | ای میل:</label>
+    <input type="email" name="Email" required>
+
+    <label>Phone | فون نمبر:</label>
+    <input type="text" name="Phone" required>
+
+    <label>Message | مسئلہ / پیغام:</label>
+    <textarea name="Message" rows="6" required></textarea>
+
+    <button type="submit" id="submitBtn">Send Message | بھیجیں</button>
+  </form>
+</div>
+
+<footer>
+  <p>© 2026 Government Comprehensive High School | جامعہ ہائی اسکول فار بوائز</p>
+</footer>
+
+<script>
+// HEADER SCROLL EFFECT
+window.addEventListener('scroll',()=>{
+  document.getElementById('header').classList.toggle('scrolled',window.scrollY>50);
+});
+
+// FORM SUBMIT WITH LOADER
+function submitForm(e){
+  e.preventDefault();
+  const loader=document.createElement('div');
+  loader.id='submitLoader';
+  loader.innerHTML='<div class="loader-circle"></div><div style="color:white;font-size:20px;margin-top:10px;">Sending Message...</div>';
+  document.body.appendChild(loader);
+  setTimeout(()=>{
+    document.getElementById('contactForm').submit();
+  },1500);
+}
+</script>
+
+</body>
+</html>
