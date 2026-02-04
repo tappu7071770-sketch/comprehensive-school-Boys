@@ -12,30 +12,176 @@
   --card:#ffffff;
   --accent:#e3f3ea;
   --text:#1b1b1b;
+  --accent-dark:#0a5e2d;
+  --highlight:#3eb370;
 }
 
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Jameel Noori Nastaleeq', serif;}
 body{background:var(--light);color:var(--text);scroll-behavior:smooth;}
-header{position:fixed;top:0;width:100%;background:var(--green);color:#fff;display:flex;justify-content:space-between;align-items:center;padding:14px 40px;z-index:1000;transition:.3s;}
+
+/* ===== HEADER ===== */
+header{
+  position:fixed;
+  top:0;
+  width:100%;
+  background:var(--green);
+  color:#fff;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 40px;
+  z-index:1000;
+  transition:.3s;
+}
 header.scrolled{box-shadow:0 8px 25px rgba(0,0,0,.25);}
-header nav a{color:#fff;margin-left:25px;text-decoration:none;font-size:1.05rem;}
-#landing{padding:150px 20px 90px;text-align:center;background:linear-gradient(180deg,#eafff2,#ffffff);}
+header h2{font-size:1.5rem;}
+header nav a{
+  color:#fff;
+  margin-left:25px;
+  text-decoration:none;
+  font-size:1.05rem;
+  font-weight:500;
+  transition:0.3s;
+}
+header nav a:hover{color:var(--highlight);}
+
+/* ===== HERO ===== */
+#landing{
+  padding:160px 20px 120px;
+  text-align:center;
+  background:linear-gradient(180deg,#eafff2,#ffffff);
+}
 #landing h1{font-size:3rem;color:var(--green);animation:fadeDown 1.2s ease;}
 #landing p{max-width:900px;margin:12px auto;font-size:1.2rem;animation:fadeUp 1.5s ease;}
-#takeAdmission{margin-top:35px;padding:15px 45px;font-size:1.2rem;border:none;border-radius:40px;background:var(--green);color:#fff;cursor:pointer;transition:.3s;}
-#takeAdmission:hover{transform:translateY(-3px);box-shadow:0 0 15px #0b7a3b, 0 0 25px #0b7a3b;}
-.section{padding:80px 20px;max-width:1200px;margin:auto;}
-.section h2{text-align:center;font-size:2.3rem;color:var(--green);margin-bottom:35px;}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px;}
-.card{background:var(--card);padding:30px;border-radius:18px;box-shadow:0 6px 20px rgba(0,0,0,.08);transition:.35s;opacity:0;transform:translateY(30px);}
+#takeAdmission{
+  margin-top:35px;
+  padding:15px 45px;
+  font-size:1.2rem;
+  border:none;
+  border-radius:50px;
+  background:linear-gradient(90deg,var(--green),var(--highlight));
+  color:#fff;
+  cursor:pointer;
+  transition:.4s;
+}
+#takeAdmission:hover{
+  transform:translateY(-3px);
+  box-shadow:0 0 20px var(--highlight), 0 0 40px var(--green);
+}
+
+/* ===== SECTIONS ===== */
+.section{
+  padding:100px 20px;
+  max-width:1400px;
+  margin:auto;
+}
+.section h2{
+  text-align:center;
+  font-size:2.6rem;
+  color:var(--green);
+  margin-bottom:50px;
+  position:relative;
+}
+.section h2::after{
+  content:"";
+  display:block;
+  width:60px;
+  height:4px;
+  background:var(--highlight);
+  margin:15px auto 0;
+  border-radius:2px;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:30px;
+}
+.card{
+  background:var(--card);
+  padding:35px;
+  border-radius:20px;
+  box-shadow:0 8px 25px rgba(0,0,0,.1);
+  transition:.4s;
+  opacity:0;
+  transform:translateY(40px);
+}
 .card.show{opacity:1;transform:translateY(0);}
-.card:hover{transform:translateY(-8px);box-shadow:0 0 10px #0b7a3b, 0 0 25px #0b7a3b;}
-.card h3{color:var(--green);margin-bottom:12px;}
-.stats{background:var(--accent);border-radius:25px;padding:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:25px;text-align:center;}
-.stats div{font-size:1.6rem;color:var(--green);}
-footer{background:var(--green);color:#fff;text-align:center;padding:40px 20px;}
-footer button{background:#fff;color:var(--green);border:none;padding:10px 28px;border-radius:25px;margin:5px;cursor:pointer;transition:.3s;}
-footer button:hover{box-shadow:0 0 10px #0b7a3b, 0 0 20px #0b7a3b;}
+.card:hover{transform:translateY(-10px);box-shadow:0 15px 35px rgba(0,0,0,.2);}
+.card h3{color:var(--green);margin-bottom:15px;font-size:1.5rem;}
+.card p{font-size:1.1rem;line-height:1.6;}
+
+/* ===== STATS ===== */
+.stats{
+  background:var(--accent);
+  border-radius:25px;
+  padding:50px 30px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:30px;
+  text-align:center;
+}
+.stats div{
+  font-size:1.7rem;
+  color:var(--green);
+  font-weight:600;
+}
+
+/* ===== TEACHERS ===== */
+.teachers{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:25px;
+  margin-top:40px;
+}
+.teacher-card{
+  background:var(--card);
+  border-radius:18px;
+  padding:20px;
+  text-align:center;
+  box-shadow:0 6px 25px rgba(0,0,0,.1);
+  transition:.3s;
+}
+.teacher-card:hover{transform:translateY(-8px);box-shadow:0 12px 35px rgba(0,0,0,.2);}
+.teacher-card img{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  object-fit:cover;
+  margin-bottom:15px;
+}
+
+/* ===== EVENTS ===== */
+.events{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:25px;
+  margin-top:40px;
+}
+.event-card{
+  background:var(--card);
+  border-radius:18px;
+  padding:20px;
+  transition:.3s;
+  box-shadow:0 6px 20px rgba(0,0,0,.08);
+}
+.event-card:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(0,0,0,.15);}
+.event-card h4{color:var(--green);margin-bottom:10px;}
+
+/* ===== FOOTER ===== */
+footer{
+  background:var(--green);
+  color:#fff;
+  text-align:center;
+  padding:50px 20px;
+}
+footer button{
+  background:#fff;color:var(--green);
+  border:none;padding:12px 30px;border-radius:30px;
+  margin:5px;cursor:pointer;transition:.3s;
+}
+footer button:hover{box-shadow:0 0 12px var(--highlight), 0 0 25px var(--green);}
+
+/* ===== ANIMATIONS ===== */
 @keyframes fadeDown{from{opacity:0;transform:translateY(-30px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
 </style>
@@ -47,11 +193,15 @@ footer button:hover{box-shadow:0 0 10px #0b7a3b, 0 0 20px #0b7a3b;}
   <nav>
     <a href="#landing">Home</a>
     <a href="admission.html">Admission</a>
+    <a href="#about">About Us</a>
+    <a href="#teachers">Teachers</a>
+    <a href="#events">Events</a>
     <a href="contact.html">Contact</a>
     <a href="support.html">Support</a>
   </nav>
 </header>
 
+<!-- HERO -->
 <section id="landing">
   <h1>Government Comprehensive High School for Boys</h1>
   <p>جامعہ ہائی اسکول فار بوائز ایک ممتاز سرکاری ادارہ ہے جو طلبہ کو معیاری تعلیم، نظم و ضبط اور جدید سہولیات فراہم کرتا ہے۔</p>
@@ -59,15 +209,18 @@ footer button:hover{box-shadow:0 0 10px #0b7a3b, 0 0 20px #0b7a3b;}
   <button id="takeAdmission">Take Admission</button>
 </section>
 
-<section class="section">
+<!-- ABOUT -->
+<section id="about" class="section">
   <h2>Our Vision & Mission</h2>
   <div class="grid">
     <div class="card"><h3>Vision</h3><p>طلبہ کو علم، اخلاق اور خود اعتمادی کے ساتھ روشن مستقبل کی طرف لے جانا۔</p></div>
     <div class="card"><h3>Mission</h3><p>اعلیٰ معیار کی تعلیم اور مثبت تربیت کے ذریعے قومی خدمت کے قابل شہری بنانا۔</p></div>
     <div class="card"><h3>Values</h3><p>نظم و ضبط، دیانت داری، محنت اور احترام۔</p></div>
+    <div class="card"><h3>Extra Programs</h3><p>Sports, Arts, STEM, Debate اور Leadership Programs طلبہ کی ہمہ جہتی تربیت کرتے ہیں۔</p></div>
   </div>
 </section>
 
+<!-- WHY US -->
 <section class="section">
   <h2>Why Choose Our School?</h2>
   <div class="grid">
@@ -75,9 +228,12 @@ footer button:hover{box-shadow:0 0 10px #0b7a3b, 0 0 20px #0b7a3b;}
     <div class="card">✔ Board Exam Excellent Results</div>
     <div class="card">✔ Modern Labs & Library</div>
     <div class="card">✔ Strong Discipline System</div>
+    <div class="card">✔ Extracurricular Clubs</div>
+    <div class="card">✔ National & International Awards</div>
   </div>
 </section>
 
+<!-- ACADEMIC STRENGTH -->
 <section class="section">
   <h2>Academic Strength</h2>
   <div class="stats">
@@ -85,9 +241,34 @@ footer button:hover{box-shadow:0 0 10px #0b7a3b, 0 0 20px #0b7a3b;}
     <div>🎓 1500+ Students</div>
     <div>🏆 90% Board Results</div>
     <div>⚽ 5 Sports Grounds</div>
+    <div>📚 10+ Labs & Library</div>
+    <div>🌐 ICT Enabled Classrooms</div>
   </div>
 </section>
 
+<!-- TEACHERS -->
+<section id="teachers" class="section">
+  <h2>Meet Our Teachers</h2>
+  <div class="teachers">
+    <div class="teacher-card"><img src="teacher1.jpg" alt=""><h3>Mr. Ahmed</h3><p>Math Teacher</p></div>
+    <div class="teacher-card"><img src="teacher2.jpg" alt=""><h3>Ms. Fatima</h3><p>Science Teacher</p></div>
+    <div class="teacher-card"><img src="teacher3.jpg" alt=""><h3>Mr. Ali</h3><p>English Teacher</p></div>
+    <div class="teacher-card"><img src="teacher4.jpg" alt=""><h3>Ms. Sara</h3><p>History Teacher</p></div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section id="events" class="section">
+  <h2>School Events & Achievements</h2>
+  <div class="events">
+    <div class="event-card"><h4>Science Fair 2025</h4><p>Students presented innovative projects and won national awards.</p></div>
+    <div class="event-card"><h4>Annual Sports Day</h4><p>Inter-school competitions with 5+ sports categories.</p></div>
+    <div class="event-card"><h4>Debate Championship</h4><p>Our team secured 1st place at city-level debate competition.</p></div>
+    <div class="event-card"><h4>Art Exhibition</h4><p>Students showcased creative arts and crafts annually.</p></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
   <p>© 2026 Government Comprehensive High School for Boys</p>
   <a href="contact.html"><button>Contact</button></a>
@@ -98,16 +279,14 @@ footer button:hover{box-shadow:0 0 10px #0b7a3b, 0 0 20px #0b7a3b;}
 // Header shadow
 window.addEventListener("scroll",()=>{header.classList.toggle("scrolled",window.scrollY>20);});
 
-// Scroll reveal
-const cards=document.querySelectorAll(".card");
+// Scroll reveal for cards
+const cards=document.querySelectorAll(".card, .teacher-card, .event-card");
 const reveal=()=>{cards.forEach(card=>{if(card.getBoundingClientRect().top<window.innerHeight-100){card.classList.add("show");}})};
 window.addEventListener("scroll",reveal);
 reveal();
 
-// Take Admission button open admission.html
-document.getElementById("takeAdmission").addEventListener("click",()=>{
-  window.location.href="admission.html";
-});
+// Take Admission button
+document.getElementById("takeAdmission").addEventListener("click",()=>{window.location.href="admission.html";});
 </script>
 
 </body>
