@@ -16,94 +16,83 @@
   --highlight:#3eb370;
 }
 
+/* ===== GLOBAL ===== */
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Jameel Noori Nastaleeq', serif;}
 body{background:var(--light);color:var(--text);scroll-behavior:smooth;}
 
 /* ===== HEADER ===== */
 header{
   position:fixed;
-  top:0;
-  width:100%;
-  background:var(--green);
+  top:0;width:100%;
+  background:linear-gradient(90deg,var(--green),var(--highlight));
   color:#fff;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:14px 40px;
+  padding:15px 40px;
   z-index:1000;
-  transition:.3s;
+  box-shadow:0 8px 25px rgba(0,0,0,.25);
+  border-bottom:3px solid var(--highlight);
+  transition:.4s;
 }
-header.scrolled{box-shadow:0 8px 25px rgba(0,0,0,.25);}
-header h2{font-size:1.5rem;}
+header.scrolled{box-shadow:0 10px 35px rgba(0,0,0,.4);}
+header h2{
+  font-size:1.6rem;font-weight:700;text-shadow:2px 2px 5px rgba(0,0,0,0.3);
+}
 header nav a{
   color:#fff;
   margin-left:25px;
   text-decoration:none;
-  font-size:1.05rem;
-  font-weight:500;
-  transition:0.3s;
+  font-size:1.05rem;font-weight:600;
+  position:relative;
+  transition:.3s;
 }
-header nav a:hover{color:var(--highlight);}
+header nav a::after{
+  content:'';position:absolute;width:0;height:2px;bottom:-5px;left:0;
+  background:#fff;transition:.3s;border-radius:2px;
+}
+header nav a:hover::after{width:100%;}
+header nav a:hover{
+  color:#fff;
+  text-shadow:0 0 8px var(--highlight),0 0 15px var(--highlight),0 0 25px var(--green);
+  transform:translateY(-2px);
+}
 
 /* ===== HERO ===== */
 #landing{
-  padding:160px 20px 120px;
-  text-align:center;
+  padding:180px 20px 140px;text-align:center;
   background:linear-gradient(180deg,#eafff2,#ffffff);
 }
 #landing h1{font-size:3rem;color:var(--green);animation:fadeDown 1.2s ease;}
 #landing p{max-width:900px;margin:12px auto;font-size:1.2rem;animation:fadeUp 1.5s ease;}
 #takeAdmission{
-  margin-top:35px;
-  padding:15px 45px;
-  font-size:1.2rem;
-  border:none;
-  border-radius:50px;
+  margin-top:35px;padding:15px 50px;font-size:1.2rem;
+  border:none;border-radius:50px;
   background:linear-gradient(90deg,var(--green),var(--highlight));
-  color:#fff;
-  cursor:pointer;
-  transition:.4s;
+  color:#fff;cursor:pointer;transition:.4s;
 }
 #takeAdmission:hover{
   transform:translateY(-3px);
-  box-shadow:0 0 20px var(--highlight), 0 0 40px var(--green);
+  box-shadow:0 0 25px var(--highlight),0 0 50px var(--green);
 }
 
 /* ===== SECTIONS ===== */
 .section{
-  padding:100px 20px;
-  max-width:1400px;
-  margin:auto;
+  padding:100px 20px;max-width:1400px;margin:auto;
 }
 .section h2{
-  text-align:center;
-  font-size:2.6rem;
-  color:var(--green);
-  margin-bottom:50px;
-  position:relative;
+  text-align:center;font-size:2.6rem;color:var(--green);margin-bottom:50px;position:relative;
 }
 .section h2::after{
-  content:"";
-  display:block;
-  width:60px;
-  height:4px;
-  background:var(--highlight);
-  margin:15px auto 0;
-  border-radius:2px;
+  content:"";display:block;width:70px;height:4px;background:var(--highlight);margin:15px auto 0;border-radius:2px;
 }
 .grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:30px;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;
 }
 .card{
-  background:var(--card);
-  padding:35px;
-  border-radius:20px;
-  box-shadow:0 8px 25px rgba(0,0,0,.1);
-  transition:.4s;
-  opacity:0;
-  transform:translateY(40px);
+  background:var(--card);padding:35px;border-radius:20px;
+  box-shadow:0 8px 25px rgba(0,0,0,.1);transition:.4s;
+  opacity:0;transform:translateY(40px);
 }
 .card.show{opacity:1;transform:translateY(0);}
 .card:hover{transform:translateY(-10px);box-shadow:0 15px 35px rgba(0,0,0,.2);}
@@ -112,74 +101,41 @@ header nav a:hover{color:var(--highlight);}
 
 /* ===== STATS ===== */
 .stats{
-  background:var(--accent);
-  border-radius:25px;
-  padding:50px 30px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:30px;
-  text-align:center;
+  background:var(--accent);border-radius:25px;padding:50px 30px;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:30px;text-align:center;
 }
-.stats div{
-  font-size:1.7rem;
-  color:var(--green);
-  font-weight:600;
-}
+.stats div{font-size:1.7rem;color:var(--green);font-weight:600;}
 
 /* ===== TEACHERS ===== */
 .teachers{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:25px;
-  margin-top:40px;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:25px;margin-top:40px;
 }
 .teacher-card{
-  background:var(--card);
-  border-radius:18px;
-  padding:20px;
-  text-align:center;
-  box-shadow:0 6px 25px rgba(0,0,0,.1);
-  transition:.3s;
+  background:var(--card);border-radius:18px;padding:20px;text-align:center;
+  box-shadow:0 6px 25px rgba(0,0,0,.1);transition:.3s;
 }
 .teacher-card:hover{transform:translateY(-8px);box-shadow:0 12px 35px rgba(0,0,0,.2);}
-.teacher-card img{
-  width:120px;
-  height:120px;
-  border-radius:50%;
-  object-fit:cover;
-  margin-bottom:15px;
-}
+.teacher-card img{width:120px;height:120px;border-radius:50%;object-fit:cover;margin-bottom:15px;}
 
 /* ===== EVENTS ===== */
 .events{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:25px;
-  margin-top:40px;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px;margin-top:40px;
 }
 .event-card{
-  background:var(--card);
-  border-radius:18px;
-  padding:20px;
-  transition:.3s;
-  box-shadow:0 6px 20px rgba(0,0,0,.08);
+  background:var(--card);border-radius:18px;padding:20px;
+  transition:.3s;box-shadow:0 6px 20px rgba(0,0,0,.08);
 }
 .event-card:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(0,0,0,.15);}
 .event-card h4{color:var(--green);margin-bottom:10px;}
 
 /* ===== FOOTER ===== */
 footer{
-  background:var(--green);
-  color:#fff;
-  text-align:center;
-  padding:50px 20px;
+  background:var(--green);color:#fff;text-align:center;padding:50px 20px;
 }
-footer button{
-  background:#fff;color:var(--green);
-  border:none;padding:12px 30px;border-radius:30px;
-  margin:5px;cursor:pointer;transition:.3s;
-}
-footer button:hover{box-shadow:0 0 12px var(--highlight), 0 0 25px var(--green);}
+footer a{margin:0 8px;text-decoration:none;color:#fff;font-weight:600;transition:.3s;position:relative;}
+footer a::after{content:'';position:absolute;width:0;height:2px;bottom:-3px;left:0;background:#fff;transition:.3s;}
+footer a:hover::after{width:100%;}
+footer a:hover{color:#fff;text-shadow:0 0 8px var(--highlight),0 0 15px var(--highlight);}
 
 /* ===== ANIMATIONS ===== */
 @keyframes fadeDown{from{opacity:0;transform:translateY(-30px)}to{opacity:1;transform:translateY(0)}}
@@ -198,14 +154,17 @@ footer button:hover{box-shadow:0 0 12px var(--highlight), 0 0 25px var(--green);
     <a href="#events">Events</a>
     <a href="contact.html">Contact</a>
     <a href="support.html">Support</a>
+    <a href="terms.html">Terms & Conditions</a>
+    <a href="privacy.html">Privacy Policy</a>
   </nav>
 </header>
 
 <!-- HERO -->
 <section id="landing">
   <h1>Government Comprehensive High School for Boys</h1>
-  <p>جامعہ ہائی اسکول فار بوائز ایک ممتاز سرکاری ادارہ ہے جو طلبہ کو معیاری تعلیم، نظم و ضبط اور جدید سہولیات فراہم کرتا ہے۔</p>
+  <p>جامعہ ہائی اسکول فار بوائز ایک ممتاز سرکاری ادارہ ہے جو طلبہ کو معیاری تعلیم، نظم و ضبط، اور جدید سہولیات فراہم کرتا ہے۔</p>
   <p>پرنسپل: طارق مسعود</p>
+  <p>ہماری کلاسز میں ICT, Science Labs, Sports, Arts، اور Leadership Programs شامل ہیں تاکہ ہر طالب علم ہمہ جہتی ترقی کرے۔</p>
   <button id="takeAdmission">Take Admission</button>
 </section>
 
@@ -228,7 +187,7 @@ footer button:hover{box-shadow:0 0 12px var(--highlight), 0 0 25px var(--green);
     <div class="card">✔ Board Exam Excellent Results</div>
     <div class="card">✔ Modern Labs & Library</div>
     <div class="card">✔ Strong Discipline System</div>
-    <div class="card">✔ Extracurricular Clubs</div>
+    <div class="card">✔ Extracurricular Clubs & Sports Teams</div>
     <div class="card">✔ National & International Awards</div>
   </div>
 </section>
@@ -271,8 +230,13 @@ footer button:hover{box-shadow:0 0 12px var(--highlight), 0 0 25px var(--green);
 <!-- FOOTER -->
 <footer>
   <p>© 2026 Government Comprehensive High School for Boys</p>
-  <a href="contact.html"><button>Contact</button></a>
-  <a href="#landing"><button>Home</button></a>
+  <div>
+    <a href="#landing">Home</a>
+    <a href="admission.html">Admission</a>
+    <a href="terms.html">Terms & Conditions</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="contact.html">Contact</a>
+  </div>
 </footer>
 
 <script>
