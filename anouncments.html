@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>School Announcements</title>
+<link href="https://fonts.googleapis.com/css2?family=Jameel+Noori+Nastaleeq&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#0b7a3b;
+  --dark:#063f22;
+  --light:#f5fff9;
+  --card:#ffffff;
+  --accent:#e6f6ee;
+  --text:#1b1b1b;
+}
+
+/* GLOBAL */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Jameel Noori Nastaleeq', serif;}
+body{background:var(--light);color:var(--text);line-height:1.8;scroll-behavior:smooth;display:flex;flex-direction:column;align-items:center;padding-top:100px;}
+
+/* HEADER */
+header{
+  position:fixed;top:0;width:100%;z-index:1000;
+  background:linear-gradient(90deg,var(--dark),var(--green));
+  color:#fff;padding:14px 20px;
+  display:flex;justify-content:space-between;align-items:center;
+  box-shadow:0 8px 25px rgba(0,0,0,.35);
+}
+header h2{font-size:1.4rem;}
+header nav a{color:#fff;text-decoration:none;margin-left:16px;font-size:1rem;font-weight:600;position:relative;}
+header nav a::after{content:'';position:absolute;width:0;height:2px;bottom:-4px;left:0;background:#fff;transition:.3s;}
+header nav a:hover::after{width:100%;}
+
+/* LOGIN */
+#loginBox{
+  background:#fff;
+  width:100%;
+  max-width:400px;
+  padding:40px;
+  border-radius:20px;
+  box-shadow:0 20px 50px rgba(0,0,0,.3);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  margin:50px auto;
+}
+#loginBox h2{color:var(--green);text-align:center;margin-bottom:30px;}
+#loginBox input{width:100%;padding:15px;margin-bottom:15px;border-radius:12px;border:1px solid #ccc;font-size:1rem;}
+#loginBox button{width:100%;padding:15px;border:none;border-radius:35px;background:linear-gradient(90deg,var(--dark),var(--green));color:#fff;font-size:1.1rem;cursor:pointer;transition:.3s;}
+#loginBox button:hover{opacity:.9;transform:scale(1.02);}
+
+/* APP */
+#app{
+  display:none;
+  width:100%;
+  max-width:1100px;
+  background:#f6fff8;
+  border-radius:25px;
+  padding:30px;
+  box-shadow:0 25px 60px rgba(0,0,0,.35);
+  animation:fadeUp .8s ease;
+}
+
+/* ADMIN PANEL */
+#adminPanel{
+  display:none;
+  background:#fff;
+  padding:25px;
+  border-radius:15px;
+  margin-bottom:25px;
+  box-shadow:0 8px 25px rgba(0,0,0,.1);
+}
+#adminPanel h3{margin-bottom:15px;color:var(--green);}
+#adminPanel textarea,#adminPanel input{
+  width:100%;
+  margin-bottom:12px;
+  padding:12px;
+  border-radius:10px;
+  border:1px solid #ccc;
+  font-size:1rem;
+}
+#adminPanel button{
+  padding:12px 25px;
+  border:none;
+  border-radius:25px;
+  background:var(--green);
+  color:#fff;
+  font-weight:600;
+  cursor:pointer;
+  transition:.3s;
+}
+#adminPanel button:hover{opacity:.9;transform:scale(1.05);}
+
+/* ANNOUNCEMENTS LIST */
+.announcements{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:20px;
+  width:100%;
+  margin-bottom:50px;
+}
+.card{
+  background:#fff;
+  padding:20px;
+  border-radius:18px;
+  box-shadow:0 8px 25px rgba(0,0,0,.12);
+  transition:.3s;
+}
+.card:hover{transform:translateY(-5px);box-shadow:0 15px 35px rgba(0,0,0,.2);}
+.card time{font-size:.85rem;color:#666;}
+.card p{margin:12px 0;line-height:1.6;}
+.card img,video,audio{width:100%;margin-top:12px;border-radius:12px;}
+
+/* Sticky Back Button */
+#backHome{
+  position:fixed;
+  bottom:20px;
+  left:20px;
+  background:var(--green);
+  color:#fff;
+  padding:14px 22px;
+  border-radius:35px;
+  font-size:1rem;
+  cursor:pointer;
+  box-shadow:0 6px 18px rgba(0,0,0,.25);
+  z-index:3000;
+  text-decoration:none;
+  transition:.3s;
+}
+#backHome:hover{transform:scale(1.08);}
+
+/* KEYFRAMES */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+/* MOBILE */
+@media(max-width:600px){
+  #loginBox{padding:30px;}
+  .card p{font-size:.95rem;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h2>Govt Comprehensive High School</h2>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="contact.html">Contact</a>
+    <a href="privacy.html">Privacy</a>
+  </nav>
+</header>
+
+<!-- LOGIN -->
+<div id="loginBox">
+  <h2>Login</h2>
+  <input type="email" id="email" placeholder="Email">
+  <input type="password" id="password" placeholder="Password">
+  <button onclick="login()">Login</button>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <header>
+    <h1>School Announcements</h1>
+    <span id="roleText"></span>
+  </header>
+
+  <!-- ADMIN PANEL -->
+  <div id="adminPanel">
+    <h3>Add Announcement</h3>
+    <textarea id="text" placeholder="Announcement text"></textarea>
+    <input type="text" id="media" placeholder="Media URL (image/video/audio)">
+    <button onclick="addAnnouncement()">Publish</button>
+  </div>
+
+  <!-- ANNOUNCEMENTS LIST -->
+  <div class="announcements" id="list"></div>
+</div>
+
+<!-- Sticky Back Home Button -->
+<a id="backHome" href="index.html">🏠 Back to Home</a>
+
+<script>
+const ADMIN_EMAIL="123@gmail.com";
+const ADMIN_PASS="123";
+let isAdmin=false;
+let data=JSON.parse(localStorage.getItem("announcements")||"[]");
+
+// LOGIN FUNCTION
+function login(){
+  const email=document.getElementById("email").value;
+  const pass=document.getElementById("password").value;
+  isAdmin=(email===ADMIN_EMAIL && pass===ADMIN_PASS);
+
+  document.getElementById("loginBox").style.display="none";
+  document.getElementById("app").style.display="block";
+  document.getElementById("roleText").innerText=isAdmin?"Admin":"Visitor";
+  if(isAdmin) document.getElementById("adminPanel").style.display="block";
+
+  render();
+}
+
+// ADD ANNOUNCEMENT
+function addAnnouncement(){
+  const text=document.getElementById("text").value.trim();
+  const media=document.getElementById("media").value.trim();
+  if(!text) return;
+
+  data.unshift({ text, media, time:new Date().toLocaleString() });
+  localStorage.setItem("announcements",JSON.stringify(data));
+  document.getElementById("text").value="";
+  document.getElementById("media").value="";
+  render();
+}
+
+// RENDER ANNOUNCEMENTS
+function render(){
+  const list=document.getElementById("list");
+  list.innerHTML="";
+  if(data.length===0){
+    list.innerHTML="<p style='text-align:center;color:#555;font-size:1.1rem;'>کوئی اعلان دستیاب نہیں ہے۔</p>";
+  }
+  data.forEach(a=>{
+    let mediaHTML="";
+    if(a.media){
+      if(a.media.match(/\.(jpg|png|jpeg|webp)$/)) mediaHTML=`<img src="${a.media}">`;
+      else if(a.media.match(/\.(mp4|webm)$/)) mediaHTML=`<video controls src="${a.media}"></video>`;
+      else if(a.media.match(/\.(mp3|wav)$/)) mediaHTML=`<audio controls src="${a.media}"></audio>`;
+    }
+    list.innerHTML+=`
+      <div class="card">
+        <time>${a.time}</time>
+        <p>${a.text}</p>
+        ${mediaHTML}
+      </div>
+    `;
+  });
+}
+
+// INITIAL RENDER
+render();
+</script>
+
+</body>
+</html>
