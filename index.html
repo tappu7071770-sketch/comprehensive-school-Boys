@@ -15,6 +15,7 @@
   --accent:#e6f6ee;
   --text:#1b1b1b;
 }
+
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Jameel Noori Nastaleeq', serif;}
 body{background:var(--light);color:var(--text);line-height:1.8;scroll-behavior:smooth;}
 
@@ -206,6 +207,45 @@ footer{text-align:center;padding:25px;background:#063f22;color:#fff;margin-top:6
         
         
 }
+/* SLIDER */
+.slider{
+  position:relative;
+  max-width: 90%;
+  height:500px;
+  margin:30px auto;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 10px 30px rgba(0,0,0,.3);
+  border:3px solid lightgreen; 
+}
+
+.slider img{
+  width:100%;
+  height:100%;
+
+  transition:0.5s;
+}
+
+/* buttons */
+.slider button{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:rgba(0,0,0,0.5);
+  color:#fff;
+  border:none;
+  padding:12px 18px;
+  cursor:pointer;
+  border-radius:50%;
+  font-size:18px;
+}
+
+.prev{left:10px;}
+.next{right:10px;}
+
+.slider button:hover{
+  background:rgba(0,0,0,0.8);
+}
 
 </style>
 </head>
@@ -221,6 +261,25 @@ footer{text-align:center;padding:25px;background:#063f22;color:#fff;margin-top:6
     <div class="spinner"></div>
   </div>
 </div>
+
+<div>
+
+
+
+<div class="slider">
+  <img id="slider-img" src="1.png">
+
+  <button class="prev" onclick="prev_image()">❮</button>
+  <button class="next" onclick="next_image()">❯</button>
+</div>
+
+
+
+
+
+
+
+
 <header>
   <h2>Govt Comprehensive High School</h2>
   <nav>
@@ -232,24 +291,23 @@ footer{text-align:center;padding:25px;background:#063f22;color:#fff;margin-top:6
 </header>
 
 <section id="hero">
+  <div id="i1">
+
+
+
+
+
+
   <h1>Government Comprehensive High School for Boys</h1>
   <p>جامعہ ہائی اسکول فار بوائز ایک معتبر سرکاری ادارہ ہے جو طلبہ کو معیاری تعلیم، نظم و ضبط، اخلاقی تربیت اور جدید تعلیمی سہولیات فراہم کرتا ہے۔</p>
   <p>پرنسپل: <strong>طارق مسعود</strong></p>
   <button class="hero-btn" onclick="location.href='admission.html'">Take Admission</button>
   <button class="hero-btn" onclick="document.getElementById('vision-section').scrollIntoView({behavior:'smooth'})">Learn More</button>
 
-
-
-
-
-
-
-
-
-
-
-
 </section>
+
+
+
 <div id="e1">
 
 <img id="ei" src="i1.png"/>
@@ -334,9 +392,9 @@ footer{text-align:center;padding:25px;background:#063f22;color:#fff;margin-top:6
 </footer>
 
 <script>
-const cards=document.querySelectorAll(".card,.stat");
-const reveal=()=>{cards.forEach(el=>{if(el.getBoundingClientRect().top<window.innerHeight-80){el.classList.add("show");}})};
-window.addEventListener("scroll",reveal);reveal();
+// const cards=document.querySelectorAll(".card,.stat");
+// const reveal=()=>{cards.forEach(el=>{if(el.getBoundingClientRect().top<window.innerHeight-80){el.classList.add("show");}})};
+// window.addEventListener("scroll",reveal);reveal();
 
 // Announcements
 const ADMIN_EMAIL="admin@gmail.com";
@@ -418,6 +476,37 @@ window.addEventListener("load", function(){
   }, 2000);
 
 });
+
+
+let img = document.getElementById("slider-img");
+let count = 0;
+
+let images = ["1.png","2.png","3.png","4.png","5.png"];
+
+function next_image(){
+  count++;
+  if(count >= images.length) count = 0;
+  img.src = images[count];
+}
+
+function prev_image(){
+  count--;
+  if(count < 0) count = images.length - 1;
+  img.src = images[count];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 </script>
 
 </body>
